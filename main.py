@@ -1,9 +1,13 @@
+from pyo import Server, Mixer, Record, MoogLP, Selector
+
 from music import Music
 from ambient_sounds import AmbientSounds
-from pyo import Server, Mixer, Record, MoogLP, Selector
+from effects import Effects
+
 import sys
 import time
 import yaml
+
 
 try:
     debug_time_delay = int(sys.argv[1])
@@ -18,12 +22,16 @@ class Main():
     def __init__(self):
         self.input_is_valid = 1
         self.first_sound_started = 0
+        
         self.music = Music("ionian", debug_time_delay) # default mode
-        self.ambient_sounds = AmbientSounds()
-        self.mixer = Mixer(outs=2, chnls=2, mul=0)
-        self.filter = MoogLP(self.mixer[0], freq=1000)
-        self.filter_selector = Selector([self.mixer[0], self.filter], voice=0).out()
+        self.music_effects = Effects()
+        self.music_effects.connect(self.music)
 
+        self.ambient_sounds = AmbientSounds()
+        self.ambient_sounds_effects = Effects()
+        self.ambient_sounds_effects.connect(self.ambient_sounds)
+        self.mixer = Mixer(outs=2, chnls=2, mul=0)
+       
         self.config = {}
         
         with open("config.yaml") as settings:

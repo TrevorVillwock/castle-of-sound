@@ -68,20 +68,7 @@ class Music():
 
         self.guitar_mixer = Mixer(time=0.2)
         self.current_guitar_channel = 0
-        
-        self.reverb_state = False
-        
-        # Effects signal chain: 
-        self.distortion = Disto(self.guitar_mixer[0], drive=0)
-        
-        self.guitar_delay = Delay(self.distortion, 0.1, 0.7, 5)
-        self.delay_selector = Selector(inputs=[self.distortion, self.guitar_delay], mul=[0.5, 0.5], voice=0)
-        
-        # We don't create a selector object for the reverb so we can directly control the amount 
-        # of wet reverb signal while leaving the original signal audible
-        self.reverb_fader = Fader()
-        self.reverb = STRev(self.delay_selector, revtime=10, mul=self.reverb_fader).out()
-        
+         
         # LFO = Low Frequency Oscillator - a signal used to modulate some paramater of the sound like pitch or volume 
         # Modulate is a fancy way of saying change over time
         self.pitch_lfo = Sine(freq=0, mul=1, add=1)
