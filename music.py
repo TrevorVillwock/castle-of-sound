@@ -361,33 +361,7 @@ class Music():
             self.current_triad = 0
 
         #print(f"self.current_triad after: {self.current_triad}")
-  
-    def toggle_guitar_reverb(self):
-        if self.reverb_state:
-            self.reverb_fader.stop()
-            self.reverb_state = False
-        else:
-            self.reverb_fader.play()
-            self.reverb_state = True
-            
-    def set_reverb_length(self, time):
-        self.reverb.setRevtime(time)
-        
-    def toggle_guitar_delay(self):
-        # print("toggle delay start")
-        if self.delay_selector.voice == 0:
-            self.delay_selector.voice = 1
-        else:
-            self.delay_selector.voice = 0
-        # print("toggle delay end")
-
-    def change_guitar_delay(self, delay):
-        """
-        Changes the delay time
-        """
-        print('called change_guitar_delay')
-        self.guitar_delay.setDelay(delay)
-        
+    
     def change_mode(self, mode):
         #print("changing mode")
         #print(mode)

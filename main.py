@@ -172,7 +172,7 @@ q - Quit """
                     self.ambient_sounds.reverse_sounds()
                 case "s":
                     self.input_is_valid = 1
-                    self.music_effects.toggle_guitar_reverb()
+                    self.music_effects.toggle_reverb()
                     self.ambient_sounds_effects.toggle_reverb()
                 case "rtime":
                     self.input_is_valid = 1
@@ -181,11 +181,11 @@ q - Quit """
                     self.ambient_sounds_effects.set_reverb_length(time)
                 case "e":
                     self.input_is_valid = 1
-                    self.music_effects.toggle_guitar_delay()
+                    self.music_effects.toggle_delay()
                     self.ambient_sounds_effects.toggle_delay()
                 case "ge":
                     self.input_is_valid = 1
-                    self.music_effects.toggle_guitar_delay()
+                    self.music_effects.toggle_delay()
                 case "as":
                     self.input_is_valid = 1
                     self.ambient_sounds_effects.volume_toggle()
@@ -193,7 +193,7 @@ q - Quit """
                     self.input_is_valid = 1
                     delay = float(self.action_selection_array[1])
                     self.ambient_sounds_effects.change_delay(delay)
-                    self.music_effects.change_guitar_delay(delay)
+                    self.music_effects.change_delay(delay)
                 case "v":
                     self.input_is_valid = 1
                     
