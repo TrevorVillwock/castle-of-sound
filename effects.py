@@ -7,7 +7,7 @@ class Effects:
 		print("source: ")
 		print(source)
 		# Effects signal chain: 
-		self.distortion = Disto(source)
+		self.distortion = Disto(source, drive=0)
 		
 		self.filter = MoogLP(self.distortion, freq=1000)
 		self.filter_selector = Selector([self.distortion, self.filter], voice=0)

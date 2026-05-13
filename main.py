@@ -172,28 +172,28 @@ q - Quit """
                     self.ambient_sounds.reverse_sounds()
                 case "s":
                     self.input_is_valid = 1
-                    self.music.toggle_guitar_reverb()
-                    self.ambient_sounds.toggle_reverb()
+                    self.music_effects.toggle_guitar_reverb()
+                    self.ambient_sounds_effects.toggle_reverb()
                 case "rtime":
                     self.input_is_valid = 1
                     time = float(self.action_selection_array[1])
-                    self.music.set_reverb_length(time)
-                    self.ambient_sounds.set_reverb_length(time)
+                    self.music_effects.set_reverb_length(time)
+                    self.ambient_sounds_effects.set_reverb_length(time)
                 case "e":
                     self.input_is_valid = 1
-                    self.music.toggle_guitar_delay()
-                    self.ambient_sounds.toggle_delay()
+                    self.music_effects.toggle_guitar_delay()
+                    self.ambient_sounds_effects.toggle_delay()
                 case "ge":
                     self.input_is_valid = 1
-                    self.music.toggle_guitar_delay()
+                    self.music_effects.toggle_guitar_delay()
                 case "as":
                     self.input_is_valid = 1
-                    self.ambient_sounds.volume_toggle()
+                    self.ambient_sounds_effects.volume_toggle()
                 case "time":
                     self.input_is_valid = 1
                     delay = float(self.action_selection_array[1])
-                    self.ambient_sounds.change_delay(delay)
-                    self.music.change_guitar_delay(delay)
+                    self.ambient_sounds_effects.change_delay(delay)
+                    self.music_effects.change_guitar_delay(delay)
                 case "v":
                     self.input_is_valid = 1
                     
@@ -211,23 +211,24 @@ q - Quit """
 
                 case "f":
                     self.input_is_valid = 1
-                    self.filter.setFreq(int(self.action_selection_array[1]))
+                    self.music_effects.filter.setFreq(int(self.action_selection_array[1]))
+                    self.ambient_sounds_effects.filter.setFreq(int(self.action_selection_array[1]))
                     
-                    if self.filter_selector.voice == 0:
+                    if self.music_effects.filter_selector.voice == 0:
                         print("Filter is disabled, run tf to enable it.")
 
                 case "tf":
                     self.input_is_valid = 1
 
-                    if self.filter_selector.voice == 0:
-                        self.filter_selector.setVoice(1)
+                    if self.music_effects.filter_selector.voice == 0:
+                        self.music_effects.filter_selector.setVoice(1)
                     else:
-                        self.filter_selector.setVoice(0)
+                        self.music_effects.filter_selector.setVoice(0)
                         
                 case "tr":
                     self.input_is_valid = 1
-                    
-
+                    self.music_effects.toggle_reverb()
+                
                 case "d":
                     self.input_is_valid = 1
 
@@ -245,7 +246,7 @@ q - Quit """
                 
                 case 'dis':
                     self.input_is_valid = 1
-                    self.music.distortion.setDrive(float(self.action_selection_array[1]))
+                    self.music_effects.distortion.setDrive(float(self.action_selection_array[1]))
                         
                 case "q":
                     self.input_is_valid = 1
