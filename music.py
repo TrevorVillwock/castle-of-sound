@@ -3,7 +3,7 @@ import random
 import time
 from math import floor
 
-class Music():
+class Music:
     def __init__(self, mode, debug_time_delay):
         self.melody_met = Metro(0.5).play()
         self.bass_met = Metro(2).play()

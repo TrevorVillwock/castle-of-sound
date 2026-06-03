@@ -18,7 +18,7 @@ s = Server(duplex=0, ichnls=0).boot()
 #s = Server(duplex=0).boot()
 s.start()
 
-class Main():  
+class Main:  
     def __init__(self):
         self.input_is_valid = 1
         self.first_sound_started = 0
