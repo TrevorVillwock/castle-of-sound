@@ -6,8 +6,7 @@ from effects import Effects
 
 import sys
 import time
-import yaml
-
+import json
 
 try:
     debug_time_delay = int(sys.argv[1])
@@ -33,11 +32,19 @@ class Main:
        
         self.config = {}
         
-        with open("config.yaml") as settings:
+        with open("config.json") as settings:
             try:
-                self.config = yaml.safe_load(settings)
+                self.config = json.load(settings)
             except:
-                print("error")
+                print("error loading json")
+                
+        print(f"config: {self.config}")
+        
+        # with open("config.yaml") as settings:
+        #     try:
+        #         self.config = yaml.safe_load(settings)
+        #     except:
+        #         print("error")
         
         print(self.config)
         print(self.config["recording_number"])
@@ -47,12 +54,18 @@ class Main:
         
         self.config['recording_number'] += 1
         
-        with open("config.yaml", "w") as settings:
+        with open("config.json", "w") as settings:
             try:
-                yaml.dump({"recording_number": self.config['recording_number']}, settings)
-            except:
-                print("error")
+                json.dump(self.config, settings)
+            except Exception as e:
+                print(e)
+                print("error dumping json")
         
+        # with open("config.yaml", "w") as settings:
+        #     try:
+        #         yaml.dump({"recording_number": self.config['recording_number']}, settings)
+        #     except:
+        #         print("error")
         
         self.mixer.addInput(0, self.music_effects.delay_selector)
         self.mixer.addInput(1, self.ambient_sounds_effects.delay_selector)
@@ -90,7 +103,7 @@ tf - Toggle filter
 td - Toggle detune
 tr - Toggle reverb
 d [float] - Change detune amount
-q - Quit """
+q - Quit \n"""
         )
         self.action_selection = input("Input a number or letter to choose: ")
         self.action_selection_array = self.action_selection.split(' ')
@@ -176,9 +189,9 @@ q - Quit """
                     self.ambient_sounds_effects.toggle_reverb()
                 case "rtime":
                     self.input_is_valid = 1
-                    time = float(self.action_selection_array[1])
-                    self.music_effects.set_reverb_length(time)
-                    self.ambient_sounds_effects.set_reverb_length(time)
+                    rev_time = float(self.action_selection_array[1])
+                    self.music_effects.set_reverb_length(rev_time)
+                    self.ambient_sounds_effects.set_reverb_length(rev_time)
                 case "e":
                     self.input_is_valid = 1
                     self.music_effects.toggle_delay()

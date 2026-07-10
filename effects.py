@@ -4,8 +4,7 @@ from pyo import Metro, SfPlayer, Mixer, TrigFunc, Delay, Selector, Sine, Adsr, S
 class Effects:
     def __init__(self, source):
         self.reverb_state = False
-        print("source: ")
-        print(source)
+        
         # Effects signal chain: 
         self.distortion = Disto(source, drive=0)
         
