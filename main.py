@@ -38,16 +38,10 @@ class Main:
             except:
                 print("error loading json")
                 
-        print(f"config: {self.config}")
+        # print(f"config: {self.config}")
         
-        # with open("config.yaml") as settings:
-        #     try:
-        #         self.config = yaml.safe_load(settings)
-        #     except:
-        #         print("error")
-        
-        print(self.config)
-        print(self.config["recording_number"])
+        # print(self.config)
+        # print(self.config["recording_number"])
         
         # the file number is taken from config.yaml and incremented each time the program runs
         self.recorder = Record(self.mixer[0], filename=f"recording-{self.config['recording_number']}.wav")
@@ -60,12 +54,6 @@ class Main:
             except Exception as e:
                 print(e)
                 print("error dumping json")
-        
-        # with open("config.yaml", "w") as settings:
-        #     try:
-        #         yaml.dump({"recording_number": self.config['recording_number']}, settings)
-        #     except:
-        #         print("error")
         
         self.mixer.addInput(0, self.music_effects.delay_selector)
         self.mixer.addInput(1, self.ambient_sounds_effects.delay_selector)
@@ -104,7 +92,7 @@ td - Toggle detune
 tr - Toggle reverb
 d [float] - Change detune amount
 q - Quit \n"""
-        )
+)
         self.action_selection = input("Input a number or letter to choose: ")
         self.action_selection_array = self.action_selection.split(' ')
         
